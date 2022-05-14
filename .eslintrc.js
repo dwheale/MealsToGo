@@ -7,6 +7,16 @@ module.exports = {
     ecmaVersion: 2022,
   },
   rules: {
-    'unicorn/filename-case': 'off',
+    'unicorn/filename-case': [
+      'error',
+      {
+        cases: {
+          camelCase: true,
+          pascalCase: true,
+          kebabCase: false,
+          snakeCase: false,
+        },
+      },
+    ],
   },
 };
