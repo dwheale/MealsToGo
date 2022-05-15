@@ -3,7 +3,6 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 
-import SafeArea from '../../../components/SafeArea';
 import Spacer from '../../../components/spacer/Spacer';
 import type { IRestaurant } from '../components/RestaurantInfoCard';
 import RestaurantInfoCard from '../components/RestaurantInfoCard';
@@ -64,7 +63,7 @@ const RestaurantScreen = () => {
   );
 
   return (
-    <SafeArea>
+    <>
       <SearchContainer>
         <Searchbar
           placeholder="Search"
@@ -77,7 +76,7 @@ const RestaurantScreen = () => {
         renderItem={renderItem}
         keyExtractor={(item: IRestaurant) => item.name}
       />
-    </SafeArea>
+    </>
   );
 };
 
