@@ -18,5 +18,11 @@ module.exports = {
         },
       },
     ],
+    'react/style-prop-object': [
+      'error',
+      {
+        "allow": ['ExpoStatusBar', 'StatusBar'],
+      }
+    ],
   },
 };
