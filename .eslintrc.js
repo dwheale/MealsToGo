@@ -34,5 +34,6 @@ module.exports = {
         functions: 'ignore',
       },
     ],
+    'no-continue': 'off',
   },
 };
