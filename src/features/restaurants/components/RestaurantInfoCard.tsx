@@ -14,19 +14,23 @@ import {
   SectionEnd,
 } from './RestaurantInfoCardStyles';
 
-type Props = {
-  restaurant?: {
-    name: string;
-    icon: string;
-    photos: string[];
-    address: string;
-    isOpen: boolean;
-    rating: number;
-    isClosedTemporarily: boolean;
-  };
+export interface IRestaurant {
+  name: string;
+  icon: string;
+  photos: string[];
+  address: string;
+  isOpen: boolean;
+  rating: number;
+  isClosedTemporarily: boolean;
+}
+
+type RestaurantInfoCardProps = {
+  restaurant: IRestaurant;
 };
 
-const RestaurantInfoCard: React.FC<Props> = ({ restaurant = {} }) => {
+const RestaurantInfoCard: React.FC<RestaurantInfoCardProps> = ({
+  restaurant = {},
+}) => {
   const {
     name = 'My Fancy-Ass B&B',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
@@ -36,7 +40,7 @@ const RestaurantInfoCard: React.FC<Props> = ({ restaurant = {} }) => {
     address = '100 some random street',
     isOpen = true,
     rating = 4,
-    isClosedTemporarily = 1,
+    isClosedTemporarily = false,
   } = restaurant;
 
   return (
