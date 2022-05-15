@@ -1,6 +1,18 @@
 import React from 'react';
-import { Card } from 'react-native-paper';
-import styled from 'styled-components/native';
+import { SvgXml } from 'react-native-svg';
+
+import open from '../../../../assets/open';
+import Text from '../../../components/typography/Text';
+import Rating from './Rating';
+import {
+  Address,
+  Info,
+  RestaurantCard,
+  RestaurantCardCover,
+  RestaurantIcon,
+  Section,
+  SectionEnd,
+} from './RestaurantInfoCardStyles';
 
 type Props = {
   restaurant?: {
@@ -14,37 +26,38 @@ type Props = {
   };
 };
 
-const Title = styled.Text`
-  padding: ${({ theme }) => theme.space[3]};
-  color: ${({ theme }) => theme.colors.ui.primary};
-`;
-
-const RestaurantCardCover = styled(Card.Cover)`
-  padding: ${({ theme }) => theme.space[3]};
-  background-color: ${({ theme }) => theme.colors.bg.primary};
-`;
-
-const RestaurantCard = styled(Card)`
-  background-color: ${({ theme }) => theme.colors.bg.primary};
-`;
-
 const RestaurantInfoCard: React.FC<Props> = ({ restaurant = {} }) => {
   const {
-    name = 'My Fancy-Ass Restaurant',
-    icon,
+    name = 'My Fancy-Ass B&B',
+    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = [
       'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
     ],
     address = '100 some random street',
     isOpen = true,
     rating = 4,
-    isClosedTemporarily,
+    isClosedTemporarily = 1,
   } = restaurant;
 
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
-      <Title>{name}</Title>
+      <Info>
+        <Section>
+          <Text variant="label">{name}</Text>
+          <RestaurantIcon source={{ uri: icon }} />
+        </Section>
+        <Section>
+          <Rating rating={rating} name={name} />
+          <SectionEnd>
+            {isClosedTemporarily && (
+              <Text variant="error">CLOSED TEMPORARILY</Text>
+            )}
+            {isOpen && <SvgXml xml={open} width="24" height="24" />}
+          </SectionEnd>
+        </Section>
+        <Address>{address}</Address>
+      </Info>
     </RestaurantCard>
   );
 };
