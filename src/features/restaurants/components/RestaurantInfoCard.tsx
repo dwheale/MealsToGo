@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper';
+import styled from 'styled-components/native';
 
 type Props = {
   restaurant?: {
@@ -14,9 +15,14 @@ type Props = {
   };
 };
 
+const Title = styled.Text`
+  padding: 16px;
+  color: red;
+`;
+
 const RestaurantInfoCard: React.FC<Props> = ({ restaurant = {} }) => {
   const {
-    name = 'My Fancy Restaurant',
+    name = 'My Fancy-Ass Restaurant',
     icon,
     photos = [
       'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
@@ -30,7 +36,7 @@ const RestaurantInfoCard: React.FC<Props> = ({ restaurant = {} }) => {
   return (
     <Card elevation={5} style={styles.card}>
       <Card.Cover key={name} style={styles.cover} source={{ uri: photos[0] }} />
-      <Text style={styles.title}>{name}</Text>
+      <Title>{name}</Title>
     </Card>
   );
 };
@@ -42,9 +48,6 @@ const styles = StyleSheet.create({
   cover: {
     padding: 20,
     backgroundColor: 'white',
-  },
-  title: {
-    padding: 16,
   },
 });
 
