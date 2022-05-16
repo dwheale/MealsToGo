@@ -4,6 +4,7 @@ import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import Spacer from '../../../components/spacer/Spacer';
+import Spinner from '../../../components/spinner/Spinner';
 import { RestaurantsContext } from '../../../services/restaurants/RestaurantContext';
 import type { IRestaurant } from '../components/RestaurantInfoCard';
 import RestaurantInfoCard from '../components/RestaurantInfoCard';
@@ -21,13 +22,17 @@ const RestaurantList = styled(FlatList).attrs({
 const RestaurantScreen = () => {
   const restaurantContext = React.useContext(RestaurantsContext);
   const [searchQuery, setSearchQuery] = React.useState('');
-  const { restaurants } = restaurantContext;
+  const { restaurants, isLoading } = restaurantContext;
 
   const renderItem: ListRenderItem<IRestaurant> = ({ item }) => (
     <Spacer position="bottom" size="large">
       <RestaurantInfoCard restaurant={item} />
     </Spacer>
   );
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
